@@ -120,7 +120,7 @@ export const NavBar = (props) => {
 	const loggedInDrawerItems = (
 		<>
 			{admin && adminDrawerItem}
-			<ListItem
+			{/* <ListItem
 				aria-label="Navigate to Dashboard"
 				button
 				component={NavLink}
@@ -128,7 +128,7 @@ export const NavBar = (props) => {
 				onClick={() => setOpenDrawer(false)}
 			>
 				<ListItemText>Dashboard</ListItemText>
-			</ListItem>
+			</ListItem> */}
 			<ListItem
 				aria-label="Log Out"
 				onClick={() => {

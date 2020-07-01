@@ -2,8 +2,6 @@ import axios from "axios";
 import setAuthToken from "../utils/setAuthToken";
 import jwt_decode from "jwt-decode";
 
-import axiosInterceptor from "./axiosConfig";
-
 import { SET_USER, SET_ERRORS } from "./types";
 
 import { setErrors } from "./error";

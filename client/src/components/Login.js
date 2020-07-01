@@ -48,9 +48,9 @@ export const Login = (props) => {
 	const [password, setPassword] = useState("");
 	const [passwordHelper, setPasswordHelper] = useState("");
 
-	if (isAuthenticated) {
-		return <Redirect to={`/dashboard/${properties.organization}`} />;
-	}
+	// if (isAuthenticated) {
+	// 	return <Redirect to={`/dashboard/${properties.organization}`} />;
+	// }
 
 	const onChange = (event) => {
 		const { value } = event.target;

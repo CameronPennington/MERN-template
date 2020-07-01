@@ -7,7 +7,6 @@ const keys = require("../config/keys");
 const getHash = require("../utils/auth").getHash;
 const getSalt = require("../utils/auth").getSalt;
 
-const Organization = require("../models/Organization");
 const User = require("../models/User");
 
 router.post("/register", async (req, res) => {
@@ -29,13 +28,6 @@ router.post("/register", async (req, res) => {
 			password: req.body.password,
 		});
 
-		const newOrg = new Organization({
-			name: req.body.organization,
-		});
-
-		newOrg.users.push(newUser);
-		newUser.organization = newOrg;
-
 		const salt = await getSalt().catch((err) => {
 			throw err;
 		});
@@ -51,16 +43,11 @@ router.post("/register", async (req, res) => {
 		await newUser.save().catch((err) => {
 			throw err;
 		});
-		await newOrg.save().catch((err) => {
-			throw err;
-		});
 
 		const formattedUser = {
 			id: newUser._id,
-			organization: newUser.organization._id,
 			firstName: newUser.firstName,
 			lastName: newUser.lastName,
-			admin: newUser.admin,
 		};
 
 		const token = jwt.sign(formattedUser, keys.secretOrKey, {
@@ -104,10 +91,8 @@ router.post("/login", async (req, res) => {
 
 		const formattedUser = {
 			id: user._id,
-			organization: user.organization._id,
 			firstName: user.firstName,
 			lastName: user.lastName,
-			admin: user.admin,
 		};
 
 		const token = jwt.sign(formattedUser, keys.secretOrKey, {
